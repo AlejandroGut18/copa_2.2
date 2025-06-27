@@ -20,7 +20,16 @@ function frmLogin(e) {
             if (this.readyState == 4 && this.status == 200) {
                 const res = JSON.parse(this.responseText);
                 if (res.icono == "success") {
-                    window.location = base_url + "Configuracion/admin";
+                    Swal.fire({
+                        position: "center",
+                        icon: res.icono,
+                        title: res.msg,
+                        showConfirmButton: false,
+                        timer: 1500,
+                      }).then(() => {
+                        window.location = base_url + "Configuracion/admin";
+                      });
+                    // window.location = base_url + "Configuracion/admin";
                 } else {
                     document.getElementById("alerta").classList.remove("d-none");
                     document.getElementById("alerta").innerHTML = res.msg;
@@ -29,3 +38,4 @@ function frmLogin(e) {
         }
     }
 }
+

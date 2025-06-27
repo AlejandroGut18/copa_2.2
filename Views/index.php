@@ -9,6 +9,7 @@
     <link rel="stylesheet" type="text/css" href="<?php echo base_url; ?>Assets/css/main.css">
     <!-- Font-icon css-->
     <link rel="stylesheet" type="text/css" href="<?php echo base_url; ?>Assets/css/font-awesome.min.css">
+    
     <title>Iniciar | Sesión</title>
 </head>
 
@@ -28,7 +29,7 @@
                 <h3 class="login-head"><i class="fa fa-lg fa-fw fa-user"></i>Iniciar Sesión</h3>
                 <div class="form-group">
                     <label class="control-label">USUARIO</label>
-                    <input class="form-control" type="text" placeholder="Usuario" id="usuario" name="usuario" autofocus required>
+                    <input class="form-control" type="text" placeholder="Usuario o Email" id="usuario" name="usuario" autofocus required>
                 </div>
                 <div class="form-group">
                     <label class="control-label">CONTRASEÑA</label>
@@ -50,9 +51,11 @@
         </div>
     </section>
     <!-- Essential javascripts for application to work-->
+
     <script src="<?php echo base_url; ?>Assets/js/jquery-3.6.0.min.js"></script>
     <script src="<?php echo base_url; ?>Assets/js/bootstrap.bundle.min.js"></script>
     <script src="<?php echo base_url; ?>Assets/js/main.js"></script>
+    <script src="<?php echo base_url; ?>Assets/js/sweetalert2.all.min.js"></script>
     <!-- The javascript plugin to display page loading on top-->
     <script src="<?php echo base_url; ?>Assets/js/pace.min.js"></script>
     <script>
@@ -67,5 +70,6 @@
         });
     </script>
 </body>
+
 
 </html>

@@ -47,6 +47,14 @@ class Query extends Conexion{
         }
         return $res;
     }
+    public function selectAllMejorado(string $sql, array $params = [])
+{
+    $this->sql = $sql;
+    $resul = $this->con->prepare($this->sql);
+    $resul->execute($params);
+    $data = $resul->fetchAll(PDO::FETCH_ASSOC);
+    return $data;
+}
 }
 
 

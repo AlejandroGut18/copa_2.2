@@ -1,3 +1,6 @@
+<IfModule mod_php.c>
+    php_value date.timezone "America/Caracas"
+</IfModule>
 RewriteEngine on
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f

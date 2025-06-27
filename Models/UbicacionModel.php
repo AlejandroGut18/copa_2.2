@@ -13,18 +13,20 @@ class UbicacionModel extends Query
     // }
     public function getUbicaciones()
     {
-        $sql = "SELECT * FROM ubicaciones";
+        $sql = "SELECT u.*, s.nombre AS estado 
+        FROM ubicaciones u 
+        INNER JOIN status s ON u.status_id = s.id";
         $data = $this->selectAll($sql);
         return $data;
     }
-    public function insertarUbicacion($nombre, $direccion)
+    public function insertarUbicacion($nombre, $direccion, $status_id)
     {
         $verificar = "SELECT * FROM ubicaciones WHERE nombre = '$nombre'";
         $existe = $this->select($verificar);
         
         if (empty($existe)) {
-            $query = "INSERT INTO ubicaciones(nombre, direccion ) VALUES (?,?)";
-            $datos = array($nombre, $direccion);
+            $query = "INSERT INTO ubicaciones(nombre, direccion, status_id ) VALUES (?,?,?)";
+            $datos = array($nombre, $direccion, $status_id);
             $data = $this->save($query, $datos);
             
             if ($data == 1) {
@@ -43,10 +45,10 @@ class UbicacionModel extends Query
         $sql = "SELECT * FROM ubicaciones WHERE id = $id";
         return $this->select($sql);
     }
-    public function actualizarUbicacion($nombre, $direccion, $id)
+    public function actualizarUbicacion($nombre, $direccion, $status_id, $id)
     {
         $query = "UPDATE ubicaciones SET nombre = ?, direccion = ? WHERE id = ?";
-        $datos = array($nombre, $direccion, $id);
+        $datos = array($nombre, $direccion, $status_id, $id);
         $data = $this->save($query, $datos);
         
         if ($data == 1) {
@@ -55,6 +57,14 @@ class UbicacionModel extends Query
             $res = "error";
         }
         return $res;
+    }
+
+    public function getUbicacionesActivas() {
+        $sql = "SELECT id, nombre 
+                FROM ubicaciones 
+                WHERE status_id = 1 
+                ORDER BY nombre";
+        return $this->selectAll($sql);
     }
   
     public function verificarPermisos($id_user, $permiso)

@@ -47,7 +47,7 @@ class GruposModel extends Query
 
     public function getGrupo($id)
     {
-        $sql = "SELECT * FROM grupo WHERE id = $id";
+        $sql = "SELECT * FROM grupos WHERE id = $id";
         return $this->select($sql);
     }
     public function actualizarGrupo($nombre, $status_id, $torneo_id, $genero, $id)
@@ -63,7 +63,27 @@ class GruposModel extends Query
         }
         return $res;
     }
+    public function estadoGrupo($status_id, $id)
+    {
+        $query = "UPDATE grupos SET status_id = ? WHERE id = ?";
+        $datos = array($status_id, $id);
+        $data = $this->save($query, $datos);
+        return $data;
+    }
 
+    public function verificarGrupoExiste($nombre, $torneo, $genero, $id = null)
+    {
+        $sql = "SELECT * FROM grupos WHERE nombre = ? AND torneo_id = ? AND genero = ?";
+        $params = [$nombre, $torneo, $genero];
+
+        // Si es edición (hay ID), excluir ese mismo grupo del resultado
+        if ($id != null) {
+            $sql .= " AND id != ?";
+            $params[] = $id;
+        }
+
+        return $this->select($sql, $params);
+    }
 
     public function verificarPermisos($id_user, $permiso)
     {
@@ -74,6 +94,28 @@ class GruposModel extends Query
             $tiene = true;
         }
         return $tiene;
+    }
+
+    public function getGruposActivos($genero = null, $torneo = null)
+    {
+        $sql = "SELECT id, nombre FROM grupos WHERE status_id = 1";
+        $params = [];
+    
+        if (!empty($genero)) {
+            $sql .= " AND genero = ?";
+            $params[] = $genero;
+        }
+    
+        if (!empty($torneo)) {
+            $sql .= " AND torneo_id = ?";
+            $params[] = $torneo;
+        }
+    
+        if (!empty($params)) {
+            return $this->selectAllMejorado($sql, $params);
+        }
+    
+        return $this->selectAll($sql);
     }
 }
 ?>

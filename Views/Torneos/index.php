@@ -1,10 +1,13 @@
-<?php include "Views/Templates/header.php"; ?>
+<?php include "Views/Templates/header.php";
+
+?>
+
 <div class="app-title">
     <div>
-        <h1><i class="fa fa-dashboard"></i>Lista de Torneos</h1>
+        <h1> Tabla de Torneos</h1>
     </div>
 </div>
-<button class="btn btn-primary mb-2" type="button" onclick="frmTorneo()"><i class="fa fa-plus"></i></button>
+<button class="btn btn-new mb-2" type="button" onclick="frmTorneo()"><i class="fa fa-plus"></i></button>
 <div class="row">
     <div class="col-lg-12">
         <div class="tile">
@@ -23,6 +26,7 @@
                             </tr>
                         </thead>
                         <tbody>
+                            
                         </tbody>
                     </table>
                 </div>
@@ -76,13 +80,12 @@
                             <div class="form-group">
                                 <label for="ubicacion_id">Ubicación</label>
                                 <select id="ubicacion_id" class="form-control" name="ubicacion_id" required>
-                                    <option value="1">Poligono de Tiro</option>
+                                    <option value="" selected disabled >Selecione un Ubicacion</option>
                                     <!-- Las opciones se cargarán dinámicamente con JavaScript -->
                                 </select>
                             </div>
                         </div>
                         
-                        Estado
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="status_id">Estado</label>

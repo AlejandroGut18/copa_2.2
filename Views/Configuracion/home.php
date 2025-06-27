@@ -1,82 +1,56 @@
 <?php include "Views/Templates/header.php"; ?>
 <div class="app-title">
     <div>
-        <h1><i class="fa fa-dashboard"></i> Panel de Administración</h1>
+        <h1> Panel de Administración</h1>
     </div>
 </div>
-<div class="row">
-    <div class="col-md-6 col-lg-3">
-        <div class="widget-small primary coloured-icon"><i class="icon fa fa-users fa-3x"></i>
-            <a class="info" href="<?php echo base_url; ?>Usuarios">
-                <h4>Usuarios</h4>
-                <p><b><?php echo $data['usuarios']['total'] ?></b></p>
-            </a>
-        </div>
-    </div>
-    <div class="col-md-6 col-lg-3">
-        <div class="widget-small info coloured-icon"><i class="icon fa fa-book fa-3x"></i>
-            <a class="info" href="<?php echo base_url; ?>Libros">
-                <h4>Libros</h4>
-                <p><b><?php echo $data['libros']['total'] ?></b></p>
-            </a>
-        </div>
-    </div>
-    <div class="col-md-6 col-lg-3">
-        <div class="widget-small warning coloured-icon"><i class="icon fa fa-address-book-o fa-3x"></i>
-            <a class="info" href="<?php echo base_url; ?>Autor">
-                <h4>Autor</h4>
-                <p><b><?php echo $data['autor']['total'] ?></b></p>
-            </a>
-        </div>
-    </div>
-    <div class="col-md-6 col-lg-3">
-        <div class="widget-small danger coloured-icon"><i class="icon fa fa-tags fa-3x"></i>
-            <a class="info" href="<?php echo base_url; ?>Editorial">
-                <h4>Editorial</h4>
-                <p><b><?php echo $data['editorial']['total'] ?></b></p>
-            </a>
-        </div>
-    </div>
-    <div class="col-md-6 col-lg-3">
-        <div class="widget-small warning coloured-icon"><i class="icon fa fa-graduation-cap fa-3x"></i>
-            <a class="info" href="<?php echo base_url; ?>Estudiantes">
-                <h4>Estudiantes</h4>
-                <p><b><?php echo $data['estudiantes']['total'] ?></b></p>
-            </a>
-        </div>
-    </div>
-    <div class="col-md-6 col-lg-3">
-        <div class="widget-small danger coloured-icon"><i class="icon fa fa-hourglass-start fa-3x"></i>
-            <a class="info" href="<?php echo base_url; ?>Prestamos">
-                <h4>Prestamos</h4>
-                <p><b><?php echo $data['prestamos']['total'] ?></b></p>
-            </a>
-        </div>
-    </div>
-    <div class="col-md-6 col-lg-3">
-        <div class="widget-small info coloured-icon"><i class="icon fa fa-list-alt fa-3x"></i>
-            <a class="info" href="<?php echo base_url; ?>Materia">
-                <h4>Materias</h4>
-                <p><b><?php echo $data['materias']['total'] ?></b></p>
-            </a>
-        </div>
-    </div>
-    <div class="col-md-6 col-lg-3">
-        <div class="widget-small primary coloured-icon"><i class="icon fa fa-cogs fa-3x"></i>
-            <a class="info" href="<?php echo base_url; ?>Configuracion">
-                <h6>Configuracion</h6>
-            </a>
-        </div>
-    </div>
-</div>
-<div class="row">
-    <div class="col-md-12">
-        <div class="tile">
-            <h3 class="tile-title">Libros Disponibles</h3>
-            <div class="embed-responsive embed-responsive-16by9">
-                <canvas class="embed-responsive-item" id="reportePrestamo"></canvas>
-            </div>
-        </div>
+<div class="dashboard-container">
+    <div class="dashboard-widgets">
+        <a class="widget" href="<?php echo base_url; ?>Materia">
+            <span class="widget-icon"><i class="fa fa-calendar"></i></span>
+            <span class="widget-title">Calendario</span>
+            <span class="widget-desc">Ver eventos y partidos</span>
+        </a>
+        <a class="widget" href="<?php echo base_url; ?>Torneos">
+            <span class="widget-icon"><i class="fa fa-trophy"></i></span>
+            <span class="widget-title">Torneos</span>
+            <span class="widget-desc">Gestión de torneos</span>
+        </a>
+        <a class="widget" href="<?php echo base_url; ?>Equipos">
+            <span class="widget-icon"><i class="fa fa-users"></i></span>
+            <span class="widget-title">Equipos</span>
+            <span class="widget-desc">Listado de equipos</span>
+        </a>
+        <a class="widget" href="<?php echo base_url; ?>Grupos">
+            <span class="widget-icon"><i class="fa fa-object-group"></i></span>
+            <span class="widget-title">Grupos</span>
+            <span class="widget-desc">Ver y organizar grupos</span>
+        </a>
+        <a class="widget" href="<?php echo base_url; ?>Juegos">
+            <span class="widget-icon"><i class="fa fa-futbol-o"></i></span>
+            <span class="widget-title">Juegos</span>
+            <span class="widget-desc">Partidos y resultados</span>
+        </a>
+        <a class="widget" href="<?php echo base_url; ?>Jugadores">
+            <span class="widget-icon"><i class="fa fa-user"></i></span>
+            <span class="widget-title">Jugadores</span>
+            <span class="widget-desc">Gestión de jugadores</span>
+        </a>
+        <a class="widget" href="<?php echo base_url; ?>Usuarios">
+            <span class="widget-icon"><i class="fa fa-user-circle"></i></span>
+            <span class="widget-title">Usuarios</span>
+            <span class="widget-desc">Administrar usuarios</span>
+        </a>
+        <a class="widget" href="<?php echo base_url; ?>Configuracion">
+            <span class="widget-icon"><i class="fa fa-cogs"></i></span>
+            <span class="widget-title">Configuración</span>
+            <span class="widget-desc">Preferencias del sistema</span>
+        </a>
+        <a class="widget" href="<?php echo base_url; ?>Reportes">
+            <span class="widget-icon"><i class="fa fa-file-pdf-o"></i></span>
+            <span class="widget-title">Reportes</span>
+            <span class="widget-desc">Reportes generados</span>
+        </a>
     </div>
 </div>
 <?php include "Views/Templates/footer.php"; ?>

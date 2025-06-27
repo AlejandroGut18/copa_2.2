@@ -21,3 +21,14 @@ END;
 //
 
 DELIMITER ;
+
+CREATE TABLE grupo_equipos (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    grupo_id INT NOT NULL,
+    equipo_id INT NOT NULL,
+    torneo_id INT NOT NULL, -- Redundancia controlada para validación
+    UNIQUE KEY unique_equipo_torneo (equipo_id, torneo_id),
+    FOREIGN KEY (grupo_id) REFERENCES grupos(id),
+    FOREIGN KEY (equipo_id) REFERENCES equipos(id),
+    FOREIGN KEY (torneo_id) REFERENCES torneos(id)
+);

@@ -1,7 +1,7 @@
 <?php include "Views/Templates/header.php"; ?>
 <div class="app-title">
     <div>
-        <h1><i class="fa fa-dashboard"></i> Datos de la Empresa</h1>
+        <h1><strong> CONFIGURACIÓN - </strong> Datos de la Empresa</h1>
     </div>
 </div>
 <div class="row">
@@ -50,7 +50,7 @@
                             </div>
                         </div>
                     </div>
-                    <button class="btn btn-primary" type="submit" onclick="frmConfig(event)">Actualizar</button>
+                    <button class="btn btn-new mb-2" type="submit" onclick="frmConfig(event)">Actualizar</button>
                 </form>
             </div>
         </div>

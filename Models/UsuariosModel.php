@@ -8,27 +8,35 @@ class UsuariosModel extends Query
     }
     public function getUsuario($usuario, $clave)
     {
-        $sql = "SELECT * FROM usuarios WHERE usuario = '$usuario' AND clave = '$clave' AND estado = 1";
+        $sql = "SELECT * FROM usuarios WHERE usuario = '$usuario' AND clave = '$clave' AND status_id = 1";
         $data = $this->select($sql);
         return $data;
     }
-    public function getUsuarios()
+    public function getUsuarios($excluirAdmin = false)
     {
-        $sql = "SELECT * FROM usuarios";
-        $data = $this->selectAll($sql);
-        return $data;
+        $sql = "SELECT u.*, s.nombre AS estado_nombre 
+            FROM usuarios u 
+            INNER JOIN status s ON u.status_id = s.id";
+
+        if ($excluirAdmin) {
+            $sql .= " WHERE u.id != 1";
+        }
+
+        return $this->selectAll($sql);
     }
-    public function registrarUsuario($usuario, $nombre, $clave)
+
+    public function registrarUsuario($usuario, $nombre, $clave, $status)
     {
         $this->usuario = $usuario;
         $this->nombre = $nombre;
         $this->clave = $clave;
+        $this->estado = $status;
         $vericar = "SELECT * FROM usuarios WHERE usuario = '$this->usuario'";
         $existe = $this->select($vericar);
         if (empty($existe)) {
             # code...
-            $sql = "INSERT INTO usuarios(usuario, nombre, clave) VALUES (?,?,?)";
-            $datos = array($this->usuario, $this->nombre, $this->clave);
+            $sql = "INSERT INTO usuarios(usuario, nombre, clave) VALUES (?,?,?,?)";
+            $datos = array($this->usuario, $this->nombre, $this->clave, $this->estado);
             $data = $this->save($sql, $datos);
             if ($data == 1) {
                 $res = "ok";
@@ -65,7 +73,7 @@ class UsuariosModel extends Query
     {
         $this->id = $id;
         $this->estado = $estado;
-        $sql = "UPDATE usuarios SET estado = ? WHERE id = ?";
+        $sql = "UPDATE usuarios SET status_id = ? WHERE id = ?";
         $datos = array($this->estado, $this->id);
         $data = $this->save($sql, $datos);
         return $data;

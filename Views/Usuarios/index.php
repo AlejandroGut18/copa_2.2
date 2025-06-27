@@ -1,10 +1,10 @@
 <?php include "Views/Templates/header.php"; ?>
 <div class="app-title">
     <div>
-        <h1><i class="fa fa-dashboard"></i> Usuarios</h1>
+        <h1> Usuarios</h1>
     </div>
 </div>
-<button class="btn btn-primary mb-2" type="button" onclick="frmUsuario();"><i class="fa fa-plus"></i></button>
+<button class="btn btn-new mb-2" type="button" onclick="frmUsuario();"><i class="fa fa-plus"></i></button>
 <div class="row">
     <div class="col-lg-12">
         <div class="tile">

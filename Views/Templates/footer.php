@@ -24,7 +24,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-primary" type="submit">Cambiar</button>
+                    <button class="btn btn-c" type="submit">Cambiar</button>
                     <button class="btn btn-danger" data-dismiss="modal">Cancelar</button>
                 </div>
             </form>
@@ -47,6 +47,7 @@
 <script type="text/javascript" src="<?php echo base_url; ?>Assets/js/datatables.min.js"></script>
 <script src="<?php echo base_url; ?>Assets/js/select2.min.js"></script>
 <script src="<?php echo base_url; ?>Assets/js/tablas.js"></script>
+<script src="<?php echo base_url; ?>Assets/js/cargas.js"></script>
 <script src="<?php echo base_url; ?>Assets/js/funciones.js"></script>
 
 <!-- Google analytics script-->

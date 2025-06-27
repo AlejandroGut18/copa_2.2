@@ -3,6 +3,8 @@ class Conexion{
     private $conect;
     public function __construct()
     {
+        date_default_timezone_set('America/Caracas');
+
         $pdo = "mysql:host=".host.";dbname=".db.";.charset.";
         try {
             $this->conect = new PDO($pdo, user, pass);

@@ -1,10 +1,10 @@
 <?php include "Views/Templates/header.php"; ?>
 <div class="app-title">
     <div>
-        <h1><i class="fa fa-dashboard"></i>Lista de Grupos</h1>
+        <h1>Grupos</h1>
     </div>
 </div>
-<button class="btn btn-primary mb-2" type="button" onclick="frmGrupos();"><i class="fa fa-plus"></i></button>
+<button class="btn btn-new mb-2" type="button" onclick="frmGrupos();"><i class="fa fa-plus"></i></button>
 <div class="row">
     <div class="col-lg-12">
         <div class="tile">
@@ -14,7 +14,7 @@
                         <thead class="thead-dark">
                             <tr>
                                 <th>Id</th>
-                                <th>Nombre</th>
+                                <th>Genero</th>
                                 <th>Torneo</th>
                                 <th>Genero</th>
                                 <th>Estado</th>
@@ -49,9 +49,9 @@
                             placeholder="Nombre de la Ubicación">
                     </div>
                     <div class="form-group">
-                        <label for="torneo">Torneo</label>
+                        <label for="torneo_id">Torneo</label>
                             <!--Recordar cargar los torneos desde el js  -->
-                            <select id="torneo" class="form-control" name="torneo" required>
+                            <select id="torneo_id" class="form-control" name="torneo_id" required>
                             <option value="" disabled selected>Seleccione un Torneo</option>
                             
                         </select>
@@ -60,8 +60,7 @@
                         <label for="genero">Genero</label>
                         <select id="genero" class="form-control" name="genero" required>
                             <option value="" disabled selected>Seleccione un Género</option>
-                            <option value="M"> Masculino</option>
-                            <option value="F"> Femenino</option>
+                           
                         </select>
                     </div>
 

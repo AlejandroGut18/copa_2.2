@@ -1,6 +1,9 @@
 <?php
+require_once __DIR__ . '/../Models/AuditoriaModel.php';
+
 class Grupos extends Controller
 {
+    private $auditoria;
     public function __construct()
     {
         session_start();
@@ -8,12 +11,13 @@ class Grupos extends Controller
             header("location: " . base_url);
         }
         parent::__construct();
-        // $id_user = $_SESSION['id_usuario'];
-        // $perm = $this->model->verificarPermisos($id_user, "ubicaciones");
-        // if (!$perm && $id_user != 1) {
-        //     $this->views->getView($this, "permisos");
-        //     exit;
-        // }
+        $this->auditoria = new AuditoriaModel(); // ← aquí
+        $id_user = $_SESSION['id_usuario'];
+        $perm = $this->model->verificarPermisos($id_user, "Grupos");
+        if (!$perm && $id_user != 1) {
+            $this->views->getView($this, "permisos");
+            exit;
+        }
     }
     public function index()
     {
@@ -48,7 +52,7 @@ class Grupos extends Controller
         $id = strClean($_POST['id']);
 
         // Estatus por defecto (puedes cambiar esto si lo tomas dinámicamente desde la BD)
-        $status_id = 1;
+        $status_id = strClean($_POST['status_id']);
 
         if (empty($nombre) || empty($genero) || empty($torneo)) {
             $msg = array('msg' => 'Todos los campos obligatorios son requeridos', 'icono' => 'warning');
@@ -63,11 +67,17 @@ class Grupos extends Controller
                     $msg = array('msg' => 'Error al registrar', 'icono' => 'error');
                 }
             } else {
-                $data = $this->model->actualizarGrupo($nombre, $status_id, $torneo, $genero, $id);
-                if ($data == "modificado") {
-                    $msg = array('msg' => 'Grupo modificado', 'icono' => 'success');
+
+                $existe = $this->model->verificarGrupoExiste($nombre, $torneo, $genero, $id);
+                if ($existe) {
+                    $msg = array('msg' => 'Ya existe otro grupo con ese nombre en este torneo y género', 'icono' => 'warning');
                 } else {
-                    $msg = array('msg' => 'Error al modificar', 'icono' => 'error');
+                    $data = $this->model->actualizarGrupo($nombre, $status_id, $torneo, $genero, $id);
+                    if ($data == "modificado") {
+                        $msg = array('msg' => 'Grupo modificado', 'icono' => 'success');
+                    } else {
+                        $msg = array('msg' => 'Error al modificar', 'icono' => 'error');
+                    }
                 }
             }
         }
@@ -94,27 +104,26 @@ class Grupos extends Controller
         echo json_encode($msg, JSON_UNESCAPED_UNICODE);
         die();
     }
+    public function reingresar($id)
+    {
+        $data = $this->model->estadoGrupo(1, $id);
+        if ($data == 1) {
+            $msg = array('msg' => 'Grupo restaurado', 'icono' => 'success');
+        } else {
+            $msg = array('msg' => 'Error al restaurar', 'icono' => 'error');
+        }
+        echo json_encode($msg, JSON_UNESCAPED_UNICODE);
+        die();
+    }
+    public function listarActivos()
+    {
+        $genero = isset($_GET['genero']) ? $_GET['genero'] : null;
+        $torneo = isset($_GET['torneo_id']) ? $_GET['torneo_id'] : null;
+        $data = $this->model->getGruposActivos($genero, $torneo);
+        echo json_encode($data, JSON_UNESCAPED_UNICODE);
+        die();
+    }
+    
 
    
-
-    //     public function reingresar($id)
-//     {
-//         $data = $this->model->estadoTorneo(1, $id);
-//         if ($data == 1) {
-//             $msg = array('msg' => 'Torneo restaurado', 'icono' => 'success');
-//         } else {
-//             $msg = array('msg' => 'Error al restaurar', 'icono' => 'error');
-//         }
-//         echo json_encode($msg, JSON_UNESCAPED_UNICODE);
-//         die();
-//     }
-//     public function buscarTorneo()
-//     {
-//         if (isset($_GET['q'])) {
-//             $valor = $_GET['q'];
-//             $data = $this->model->buscarTorneo($valor);
-//             echo json_encode($data, JSON_UNESCAPED_UNICODE);
-//             die();
-//         }
-//     }
 }
