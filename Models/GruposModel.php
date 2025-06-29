@@ -22,7 +22,7 @@ class GruposModel extends Query
         $data = $this->selectAll($sql);
         return $data;
     }
-    public function insertarGrupo($nombre, $status_id, $torneo_id, $genero)
+    public function insertarGrupo($nombre, $torneo_id, $genero, $status_id)
     {
         // Validar que no exista el mismo grupo con el mismo torneo y género
         $verificar = "SELECT * FROM grupos WHERE nombre = '$nombre' AND torneo_id = $torneo_id AND genero = '$genero'";
@@ -45,44 +45,12 @@ class GruposModel extends Query
         return $res;
     }
 
-    public function getGrupo($id)
-    {
-        $sql = "SELECT * FROM grupos WHERE id = $id";
-        return $this->select($sql);
-    }
-    public function actualizarGrupo($nombre, $status_id, $torneo_id, $genero, $id)
-    {
-        $query = "UPDATE grupos SET nombre = ?, status_id = ?, torneo_id = ?, genero = ? WHERE id = ?";
-        $datos = array($nombre, $status_id, $torneo_id, $genero, $id);
-        $data = $this->save($query, $datos);
-
-        if ($data == 1) {
-            $res = "modificado";
-        } else {
-            $res = "error";
-        }
-        return $res;
-    }
     public function estadoGrupo($status_id, $id)
     {
         $query = "UPDATE grupos SET status_id = ? WHERE id = ?";
         $datos = array($status_id, $id);
         $data = $this->save($query, $datos);
         return $data;
-    }
-
-    public function verificarGrupoExiste($nombre, $torneo, $genero, $id = null)
-    {
-        $sql = "SELECT * FROM grupos WHERE nombre = ? AND torneo_id = ? AND genero = ?";
-        $params = [$nombre, $torneo, $genero];
-
-        // Si es edición (hay ID), excluir ese mismo grupo del resultado
-        if ($id != null) {
-            $sql .= " AND id != ?";
-            $params[] = $id;
-        }
-
-        return $this->select($sql, $params);
     }
 
     public function verificarPermisos($id_user, $permiso)

@@ -5,7 +5,7 @@
         <h1> Jugadores Inscritos</h1>
     </div>
 </div>
-<button class="btn btn-new mb-2" type="button" onclick="frmInscripcionJugador()"><i class="fa fa-plus"></i></button>
+<button class="btn btn-new mb-2" type="button" onclick="frmInscripcionJugador()"><i class="fa fa-plus"></i>Agregar</button>
 <div class="row">
     <div class="col-lg-12">
         <div class="tile">

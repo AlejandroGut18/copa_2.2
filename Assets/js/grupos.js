@@ -13,14 +13,16 @@ const frmGrupos = () => {
 const registrarGrupo = (e) => {
   e.preventDefault();
   const nombre = document.getElementById("nombre");
-  const torneo = document.getElementById("torneo");
+  const torneo = document.getElementById("torneo_id");
   const genero = document.getElementById("genero");
 
+  console.log(nombre);
+  console.log(torneo);
+  console.log(genero);
   if (
     nombre.value.trim() === "" ||
     torneo.value === "" ||
-    genero.value === ""
-  ) {
+    genero.value === "") {
     alertas("Todos los campos son requeridos", "warning");
   } else {
     const url = base_url + "Grupos/registrar";
@@ -38,33 +40,6 @@ const registrarGrupo = (e) => {
       }
     };
   }
-};
-
-const btnEditarGrupo = (id) => {
-  // console.log("Editando grupo con ID:", id); // ✅ prueba
-
-  document.getElementById("title").textContent = "Actualizar Grupo";
-  document.getElementById("btnAccion").textContent = "Modificar";
-  const url = base_url + "Grupos/editar/" + id;
-  const http = new XMLHttpRequest();
-  http.open("GET", url, true);
-  http.send();
-  http.onreadystatechange = function () {
-    if (this.readyState == 4) {
-      try {
-        const res = JSON.parse(this.responseText);
-        document.getElementById("id").value = res.id;
-        document.getElementById("nombre").value = res.nombre;
-        document.getElementById("torneo").value = res.torneo_id;
-        document.getElementById("genero").value = res.genero;
-        cargarTorneos(res.torneo_id);
-        $("#nuevoGrupo").modal("show");
-      } catch (err) {
-        console.error("Error al parsear JSON:", err);
-        console.warn("Respuesta del servidor:", this.responseText);
-      }
-    }
-  };
 };
 
 const btnEliminarGrupo = (id) => {

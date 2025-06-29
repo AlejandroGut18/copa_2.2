@@ -4,7 +4,7 @@
         <h1>Grupos</h1>
     </div>
 </div>
-<button class="btn btn-new mb-2" type="button" onclick="frmGrupos();"><i class="fa fa-plus"></i></button>
+<button class="btn btn-new mb-2" type="button" onclick="frmGrupos();"><i class="fa fa-plus"></i>Agregar</button>
 <div class="row">
     <div class="col-lg-12">
         <div class="tile">
@@ -14,7 +14,7 @@
                         <thead class="thead-dark">
                             <tr>
                                 <th>Id</th>
-                                <th>Genero</th>
+                                <th>Grupo</th>
                                 <th>Torneo</th>
                                 <th>Genero</th>
                                 <th>Estado</th>
@@ -46,7 +46,7 @@
                     <div class="form-group">
                         <label for="nombre">Nombre</label>
                         <input id="nombre" class="form-control" type="text" name="nombre"
-                            placeholder="Nombre de la Ubicación">
+                            placeholder="Nombre de grupo">
                     </div>
                     <div class="form-group">
                         <label for="torneo_id">Torneo</label>

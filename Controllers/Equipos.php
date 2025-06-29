@@ -65,17 +65,38 @@ class Equipos extends Controller
                     $msg = array('msg' => 'El equipo ya existe', 'icono' => 'warning');
                 } else if ($data == "jugador_no_existe") {
                     $msg = array('msg' => 'El delegado no existe', 'icono' => 'warning');
+
+                } else if ($data === "delegado_genero") {
+                    $msg = array('msg' => "Ese jugador ya es delegado en un equipo del mismo género", 'icono' => "warning");
                 } else {
                     $msg = array('msg' => 'Error al registrar', 'icono' => 'error');
                 }
             } else {
-                $data = $this->model->actualizarEquipo($nombre, $delegado, $status_id, $genero, $id);
-                if ($data == "modificado") {
-                    $msg = array('msg' => 'Equipo modificado', 'icono' => 'success');
+                // Validar si ya existe un equipo con ese nombre (distinto al actual)
+                $verificarNombre = "SELECT * FROM equipos WHERE nombre = '$nombre' AND id != $id";
+                $existeNombre = $this->model->select($verificarNombre);
+            
+                // Validar si el delegado ya está en otro equipo del mismo género (distinto al actual)
+                $verificarDelegado = "SELECT * FROM equipos 
+                    WHERE delegado_equipo = '$delegado' 
+                    AND genero = '$genero' 
+                    AND id != $id";
+                $existeDelegado = $this->model->select($verificarDelegado);
+            
+                if (!empty($existeNombre)) {
+                    $msg = array('msg' => 'Ya existe otro equipo con ese nombre', 'icono' => 'warning');
+                } else if (!empty($existeDelegado)) {
+                    $msg = array('msg' => 'Ese jugador ya es delegado de otro equipo del mismo género', 'icono' => 'warning');
                 } else {
-                    $msg = array('msg' => 'Error al modificar', 'icono' => 'error');
+                    $data = $this->model->actualizarEquipo($nombre, $delegado, $status_id, $genero, $id);
+                    if ($data == "modificado") {
+                        $msg = array('msg' => 'Equipo modificado', 'icono' => 'success');
+                    } else {
+                        $msg = array('msg' => 'Error al modificar', 'icono' => 'error');
+                    }
                 }
             }
+            
         }
 
         echo json_encode($msg, JSON_UNESCAPED_UNICODE);
@@ -141,7 +162,7 @@ class Equipos extends Controller
         die();
     }
 
-    
+
 
 
 }

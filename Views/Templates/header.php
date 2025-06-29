@@ -1,3 +1,10 @@
+<?php
+require_once __DIR__ . '/../../Config/Config.php';
+$rol_id = $_SESSION['rol_id'] ?? null;
+$nombre_usuario = $_SESSION['nombre'] ?? 'Invitado';
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,6 +32,11 @@
     <link href="<?php echo base_url; ?>Assets/css/datatables.min.css" rel="stylesheet" crossorigin="anonymous" />
     <link href="<?php echo base_url; ?>Assets/css/select2.min.css" rel="stylesheet" />
     <link href="<?php echo base_url; ?>Assets/css/estilos.css" rel="stylesheet" />
+    <link rel="stylesheet" href="<?php echo base_url; ?>Assets/css/tippy.css">
+    
+    <!-- Logo -->
+    <link rel="icon" type="image/x-icon" href="<?php echo base_url; ?>Assets/icons/logo1.ico">
+
     <!-- Font-icon css-->
     <link rel="stylesheet" type="text/css" href="<?php echo base_url; ?>Assets/css/font-awesome.min.css">
 </head>
@@ -41,8 +53,7 @@
         <div class="logo">
             <img src="<?php echo base_url; ?>Assets/icons/logo1.ico" alt="Logo" style="width:50px;height:50px;">
             <div style="display:flex; flex-direction:column; line-height:1; margin-left:0.5rem;">
-            <span style="font-size:1.1rem; font-weight:700; letter-spacing:1px; color: #ffd823;">COPA DE</span>
-            <span style="font-size:1.3rem; font-weight:900; letter-spacing:1.5px; color: #222e3c;">CAMPEONES</span>
+            <span style="font-size:1.6rem; font-weight:700; background: linear-gradient(to right,rgb(35, 156, 19), #ffd823); -webkit-background-clip: text; -webkit-text-fill-color: transparent; display: inline-block;">ASOBOCOPA</span>
             </div>
         </div>
         <!-- Sidebar toggle button-->
@@ -329,6 +340,8 @@
                     </li>
                 </ul>
             </li>
+            <?php if ($_SESSION['rol_id'] == ROL_ADMIN): ?>
+
             <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i
                         class="app-menu__icon fa fa-wrench"></i><span class="app-menu__label">Administración</span><i
                         class="treeview-indicator fa fa-angle-right"></i></a>
@@ -339,6 +352,8 @@
                                 class="icon fa fa-cogs"></i> Configuración</a></li>
                 </ul>
             </li>
+            <?php endif; ?>
+
             <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i
                         class="app-menu__icon fa fa-file-text"></i><span class="app-menu__label">Reportes</span><i
                         class="treeview-indicator fa fa-angle-right"></i></a>

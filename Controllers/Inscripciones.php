@@ -59,7 +59,7 @@ class Inscripciones extends Controller
         $equipo_id = strClean($_POST['equipo_id']);
         $genero = strClean($_POST['genero']);
         $status_id = strClean(cadena: $_POST['status_id'] ?? 1);
-        $id = strClean($_POST['id']);
+        $id = strClean($_POST['id'] ?? "");
 
         if (empty($torneo_id) || empty($equipo_id) || empty($genero)) {
             $msg = array('msg' => 'Torneo, género y equipo son requeridos', 'icono' => 'warning');

@@ -32,8 +32,7 @@ class juegos extends Controller
                 $data[$i]['estado'] = '<span class="badge badge-success">Pendiente</span>';
                 $data[$i]['acciones'] = '<div>
                     <button class="btn btn-edit" type="button" onclick="btnEditarJuego(' . $data[$i]['id'] . ');"><i class="fa fa-pencil-square-o"></i></button>
-                    
-                    <button class="btn btn-delete" type="button" onclick="btnActualizarPuntos(' . $data[$i]['id'] . ');"><i class="fa fa-trash-o"></i></button>
+                    <button class="btn btn-update" type="button" onclick="btnActualizarPuntos(' . $data[$i]['id'] . ');"><i class="fa fa-refresh"></i></button>
                 </div>';
             } 
         }

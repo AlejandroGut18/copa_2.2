@@ -31,22 +31,25 @@ class EquiposModel extends Query
         $verificar = "SELECT * FROM equipos WHERE nombre = '$nombre'";
         $existe = $this->select($verificar);
 
+        // Verificar si el jugador ya es delegado en ese género
+        $verificarDelegado = "SELECT * FROM equipos WHERE delegado_equipo = '$delegado' AND genero = '$genero'";
+        $delegadoExiste = $this->select($verificarDelegado);
+
+        if (!empty($delegadoExiste)) {
+            return "delegado_genero";
+        }
+
         if (empty($existe)) {
             $query = "INSERT INTO equipos(nombre, delegado_equipo, status_id, genero) VALUES (?, ?, ?, ?)";
             $datos = array($nombre, $delegado, $status_id, $genero);
             $data = $this->save($query, $datos);
 
-            if ($data == 1) {
-                $res = "ok";
-            } else {
-                $res = "error";
-            }
+            return $data == 1 ? "ok" : "error";
         } else {
-            $res = "existe";
+            return "existe";
         }
-
-        return $res;
     }
+
 
     public function getEquipo($id)
     {

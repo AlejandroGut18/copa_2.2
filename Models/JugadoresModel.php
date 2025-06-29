@@ -110,7 +110,12 @@ class JugadoresModel extends Query
     {
         $sql = "SELECT cedula, nombre, apellido 
             FROM jugadores 
-            WHERE status_id = 1";
+            WHERE status_id = 1
+            AND (
+                SELECT COUNT(*) 
+                FROM equipos 
+                WHERE delegado_equipo = jugadores.cedula
+            ) < 2";
         return $this->selectAll($sql);
     }
 

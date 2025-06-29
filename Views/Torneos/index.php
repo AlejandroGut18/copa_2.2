@@ -7,7 +7,97 @@
         <h1> Tabla de Torneos</h1>
     </div>
 </div>
-<button class="btn btn-new mb-2" type="button" onclick="frmTorneo()"><i class="fa fa-plus"></i></button>
+
+
+
+
+<button class="btn btn-new mb-2" type="button" onclick="frmTorneo()"><i class="fa fa-plus"></i>Agregar</button>
+<div class="row mb-3 align-items-end">
+    <div class="col-md-6">
+        <div class="form-row">
+            <div class="col-6">
+                <div class="form-group mb-0">
+                    <label for="filtro_fecha_desde"> Fecha Desde</label>
+                    <input type="date" id="filtro_fecha_desde" class="form-control">
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group mb-0">
+                    <label for="filtro_fecha_hasta"> Fecha Hasta</label>
+                    <input type="date" id="filtro_fecha_hasta" class="form-control">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group mb-0">
+            <label for="filtro_estado">Estado</label>
+            <select id="filtro_estado" class="form-control">
+                <option value="">Todos</option>
+                <option value="1">Activo</option>
+                <option value="0">Inactivo</option>
+            </select>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group mb-0 d-flex align-items-end" style="width:100%;">
+            <button class="btn btn-filter mr-2 flex-fill" type="button"><i class="fa fa-filter"></i> Filtrar</button>
+            <button class="btn btn-clean flex-fill" type="button"><i class="fa fa-clean"></i> Limpiar</button>
+        </div>
+    </div>
+</div>
+<style>
+    @media (min-width: 768px) {
+        .col-md-3 .form-group.d-flex > .btn {
+            min-width: 0;
+            width: 50%;
+        }
+    }
+    @media (max-width: 767.98px) {
+        .col-md-3 .form-group.d-flex {
+            flex-direction: column;
+        }
+        .col-md-3 .form-group.d-flex > .btn {
+            width: 100%;
+            margin-bottom: 8px;
+        }
+        .col-md-3 .form-group.d-flex > .btn:last-child {
+            margin-bottom: 0;
+        }
+        .col-md-3 .form-group.d-flex {
+            flex-direction: row;
+            align-items: stretch;
+        }
+        .col-md-3 .form-group.d-flex > .btn {
+            width: 50%;
+            margin-bottom: 0;
+            margin-right: 8px;
+        }
+        .col-md-3 .form-group.d-flex > .btn:last-child {
+            margin-right: 0;
+        }
+    }
+</style>
+<style>
+@media (max-width: 767.98px) {
+    .form-row > .col-6 {
+        max-width: 50%;
+        flex: 0 0 50%;
+        margin-bottom: 0;
+    }
+    .row.mb-3.align-items-end > .col-md-6,
+    .row.mb-3.align-items-end > .col-md-3 {
+        max-width: 100%;
+        flex: 0 0 100%;
+        margin-bottom: 10px;
+    }
+    .row.mb-3.align-items-end {
+        flex-direction: column;
+    }
+}
+
+</style>
+
 <div class="row">
     <div class="col-lg-12">
         <div class="tile">

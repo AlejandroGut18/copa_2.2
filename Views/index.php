@@ -39,14 +39,14 @@
                 <div class="form-group btn-container">
                     <button class="btn btn-primary btn-block" type="submit"><i class="fa fa-sign-in fa-lg fa-fw"></i>Login</button>
                 </div>
-<!--                 <div class="login-footer pass">
+                <!-- <div class="login-footer pass">
                     <p>¿Olvidó su contraseña?</p>
                     <a href="<?php echo base_url; ?>Views/forgot_password.php">Recuperar contraseña</a>
-                </div>
+                </div> -->
                 <div class="login-footer">
                     <p>¿No es miembro de Copa de Campeones?</p>
-                    <a href="<?php echo base_url; ?>Views/signup.php">Regístrese aquí</a>
-                </div> -->
+                    <a href="<?php echo base_url; ?>Views/register.php">Regístrese aquí</a>
+                </div>
             </form>
         </div>
     </section>

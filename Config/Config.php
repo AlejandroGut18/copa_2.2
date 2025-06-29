@@ -7,6 +7,9 @@ const user = "root";
 const pass = "";
 const db = "copa_3";
 date_default_timezone_set('America/Caracas');
+// constantes.php
+define('ROL_ADMIN', 1);
+define('ROL_DELEGADO', 3);
 
 //const charset = "charset=utf8";
 ?>

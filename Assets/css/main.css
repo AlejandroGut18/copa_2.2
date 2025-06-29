@@ -16,6 +16,7 @@
   }
 }
 
+
 /* Ajusta el ancho de la tabla cuando el sidebar está cerrado */
 .logo {
   display: flex;
@@ -2712,7 +2713,7 @@ fieldset:disabled a.btn {
 
 .btn-edit,
 .btn-delete,
-.btn-success {
+.btn-update {
   color: #FFF;
   display: inline-block;
   margin-left: 0;
@@ -2721,37 +2722,37 @@ fieldset:disabled a.btn {
 }
 
 
-.btn-success {
-  background-color: rgb(72 159 80);
-  border-color: rgb(72 159 80);
+.btn-update {
+  background-color: #28a745;
+  border-color: #28a745;
   margin-right: 0.5rem;
 /*   margin-bottom: 0.3rem; */
 }
-.btn-success:hover {
-  background-color:  rgb(65, 143, 73);
-  border-color:  rgb(65, 143, 73);
+.btn-update:hover {
+  background-color:  rgb(61, 129, 67);
+  border-color:   rgb(61, 129, 67);
     color: #ffffff;
 }
-.btn-success.disabled, .btn-success:disabled {
-  background-color: rgb(65, 143, 73);
-  border-color: rgb(65, 143, 73);
+.btn-update.disabled, .btn-update:disabled {
+  background-color:  rgb(61, 129, 67);
+  border-color:  rgb(61, 129, 67);
 }
-.btn-success:not(:disabled):not(.disabled):active, .btn-success:not(:disabled):not(.disabled).active,
-.show > .btn-success.dropdown-toggle {
-  background-color: rgb(65, 143, 73);
-  border-color: rgb(65, 143, 73);
+.btn-update:not(:disabled):not(.disabled):active, .btn-update:not(:disabled):not(.disabled).active,
+.show > .btn-update.dropdown-toggle {
+  background-color:  rgb(61, 129, 67);
+  border-color:  rgb(61, 129, 67);
 }
-.btn-success:not(:disabled):not(.disabled):active:focus, .btn-success:not(:disabled):not(.disabled).active:focus,
-.show > .btn-success.dropdown-toggle:focus {
-  -webkit-box-shadow: 0 0 0 0 rgb(72 159 80);
-          box-shadow: 0 0 0 0 rgb(72 159 80);
+.btn-update:not(:disabled):not(.disabled):active:focus, .btn-update:not(:disabled):not(.disabled).active:focus,
+.show > .btn-update.dropdown-toggle:focus {
+  -webkit-box-shadow: 0 0 0 0 #28a745;
+          box-shadow: 0 0 0 0 #28a745;
 }
 
 
 .btn-edit {
   background-color: #007bff;
   border-color: #007bff;
-  margin-right: 0.5rem;
+  margin-right: 0.3rem;
 /*   margin-bottom: 0.3rem; */
 }
 .btn-edit:hover {
@@ -2798,18 +2799,7 @@ fieldset:disabled a.btn {
           box-shadow: 0 0 0 0 #b21f2d;
 }
 
-.btn-primary {
-  color: #FFF;
-  background-color: #e2d515;
-  border-color: #e2d515;
-}
 
-
-.btn-primary:hover {
-  color: #FFF;
-  background-color: #d6c20d;
-  border-color: #d6c20d;
-}
 
 /* Boton new para agregar */
 .btn-new{
@@ -2817,8 +2807,8 @@ fieldset:disabled a.btn {
   background-color: rgb(4, 170, 18);
   border-color: rgb(4, 170, 18);
   display: block;
-  margin-left: auto;
-  margin-bottom: 1rem;
+  margin-left: auto; /* NO TOCAR */
+/*   margin-bottom: 1rem; */
 }
 .btn-new:hover {
   color: #FFF;
@@ -2840,6 +2830,19 @@ fieldset:disabled a.btn {
 .show > .btn-new.dropdown-toggle:focus {
   -webkit-box-shadow: 0 0 0 0 rgb(7, 153, 19);
           box-shadow: 0 0 0 0 rgb(7, 153, 19);
+}
+
+.btn-primary {
+  color: #FFF;
+  background-color: #e2d515;
+  border-color: #e2d515;
+}
+
+
+.btn-primary:hover {
+  color: #FFF;
+  background-color: #d6c20d;
+  border-color: #d6c20d;
 }
 
 .btn-primary:focus, .btn-primary.focus {
@@ -2865,6 +2868,90 @@ fieldset:disabled a.btn {
   -webkit-box-shadow: 0 0 0 0 #d6c20d;
           box-shadow: 0 0 0 0 #d6c20d;
 }
+
+
+.btn-clean {
+  color: #FFF;
+  background-color: #9fb1c7;
+  border-color: #9fb1c7;
+}
+
+
+.btn-clean:hover {
+  color: #FFF;
+  background-color: #8a98aa;
+  border-color: #8a98aa;
+}
+
+.btn-clean:focus, .btn-clean.focus {
+  -webkit-box-shadow: 0 0 0 0 #8a98aa;
+          box-shadow: 0 0 0 0 #8a98aa;
+}
+
+.btn-clean.disabled, .btn-clean:disabled {
+  color: #FFF;
+  background-color: #8a98aa;
+  border-color: #8a98aa;
+}
+
+.btn-clean:not(:disabled):not(.disabled):active, .btn-clean:not(:disabled):not(.disabled).active,
+.show > .btn-primary.dropdown-toggle {
+  color: #FFF;
+  background-color: #8a98aa;
+  border-color: #8a98aa;
+}
+
+.btn-clean:not(:disabled):not(.disabled):active:focus, .btn-clean:not(:disabled):not(.disabled).active:focus,
+.show > .btn-primary.dropdown-toggle:focus {
+  -webkit-box-shadow: 0 0 0 0 #8a98aa;
+          box-shadow: 0 0 0 0 #8a98aa;
+}
+
+
+
+
+
+/*  */
+
+.btn-filter {
+  color: #FFF;
+  background-color: #e2d515;
+  border-color: #e2d515;
+}
+
+
+.btn-filter:hover {
+  color: #FFF;
+  background-color: #d6c20d;
+  border-color: #d6c20d;
+}
+
+.btn-filter:focus, .btn-filter.focus {
+  -webkit-box-shadow: 0 0 0 0 #d6c20d;
+          box-shadow: 0 0 0 0 #d6c20d;
+}
+
+.btn-filter.disabled, .btn-filter:disabled {
+  color: #FFF;
+  background-color: #d6c20d;
+  border-color: #d6c20d;
+}
+
+.btn-filter:not(:disabled):not(.disabled):active, .btn-filter:not(:disabled):not(.disabled).active,
+.show > .btn-filter.dropdown-toggle {
+  color: #FFF;
+  background-color: #d6c20d;
+  border-color: #d6c20d;
+}
+
+.btn-filter:not(:disabled):not(.disabled):active:focus, .btn-filter:not(:disabled):not(.disabled).active:focus,
+.show > .btn-filter.dropdown-toggle:focus {
+  -webkit-box-shadow: 0 0 0 0 #d6c20d;
+          box-shadow: 0 0 0 0 #d6c20d;
+}
+
+/*  */
+
 
 .btn-secondary {
   color: #FFF;
@@ -10996,8 +11083,12 @@ div.dataTables_scrollFoot > .dataTables_scrollFootInner > table {
   div.dataTables_wrapper div.dataTables_filter,
   div.dataTables_wrapper div.dataTables_info,
   div.dataTables_wrapper div.dataTables_paginate {
-    text-align: center;
+    text-align: left;
+    
   }
+.dataTables_length{
+margin-left: 15px !important;
+}
 }
 
 table.dataTable.table-sm > thead > tr > th {
@@ -15212,7 +15303,6 @@ be a descendant of the grid when it is being dragged.
 
 .app-sidebar__toggle:focus, .app-sidebar__toggle:hover {
   color: #ffb100;
-/*   background-color: #072a40; */ /* = color hover */
   text-decoration: none;
 }
 
@@ -15480,7 +15570,7 @@ be a descendant of the grid when it is being dragged.
       -ms-flex-align: center;
           align-items: center;
   padding: 8px 10px;
-  font-size: 1.08em;
+  font-size: 1.24em;
   border-left: 3px solid transparent;
   -webkit-transition: border-left-color 0.3s ease,
  background-color 0.3s ease;
@@ -15497,10 +15587,6 @@ be a descendant of the grid when it is being dragged.
   text-decoration: none;
   color: #fff;
 }
-/* .treeview.is-expanded [data-toggle='treeview'] {
-  border-left-color:  #1f6d1c;
-  background: #141b1f; 
-} */
 
 .app-menu__icon {
   -webkit-box-flex: 0;
@@ -15534,7 +15620,6 @@ be a descendant of the grid when it is being dragged.
   -webkit-transition: max-height 0.3s ease;
   -o-transition: max-height 0.3s ease;
   transition: max-height 0.3s ease;
-/*   background: #2e3e45; */  /* ------------------------------------------------------------------------------------------ */
 }
 
 .treeview-item {
@@ -15545,8 +15630,9 @@ be a descendant of the grid when it is being dragged.
       -ms-flex-align: center;
           align-items: center;
   padding: 5px 5px 5px 30px;
-  font-size: 1em;
+  font-size: 1.09em;
   color: #fff;
+
 }
 
 .treeview-item.active, .treeview-item:hover, .treeview-item:focus {
@@ -15604,24 +15690,27 @@ be a descendant of the grid when it is being dragged.
     visibility: visible;
   }
   .sidebar-mini.sidenav-toggled .app-menu__label {
-    display: block;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    left: 50px;
-    min-width: 180px;
-    padding: 12px 5px 12px 20px;
-    margin-left: -3px;
-    line-height: 1;
-    opacity: 0;
-    background: #141b1f;
-    border-top-right-radius: 4px;
-    border-bottom-right-radius: 4px;
+      display: block;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      left: 50px;
+      min-width: 180px;
+      padding: 12px 5px 12px 20px;
+      margin-left: -3px;
+      line-height: 1;
+      opacity: 0;
+      background: #0f1724;
+      border-top-right-radius: 4px;
+      border-bottom-right-radius: 4px;
+      border-top: 2px solid #ffb100;
+      border-bottom: 2px solid #ffb100;
+      border-right: 2px solid #ffb100;
   }
   .sidebar-mini.sidenav-toggled .treeview:hover .app-menu__item {
     overflow: visible;
-    background: #141b1f;
-    border-left-color: #1f6d1c;/* ------------------------------------------------------------------------------------------------------ */
+/*     background: #141b1f;
+    border-left-color: #1f6d1c; *//* ------------------------------------------------------------------------------------------------------ */
     color: #fff;
   }
   .sidebar-mini.sidenav-toggled .treeview:hover .app-menu__label {
@@ -15632,6 +15721,10 @@ be a descendant of the grid when it is being dragged.
     opacity: 1;
     visibility: visible;
     z-index: 10;
+    background-color: #0f1724;
+    border-top: 1px solid #ffb100;
+    border-bottom: 2px solid #ffb100;
+    border-right: 2px solid #ffb100;
   }
   .sidebar-mini.sidenav-toggled .treeview .app-menu__label {
     border-bottom-right-radius: 0;
@@ -15650,6 +15743,13 @@ be a descendant of the grid when it is being dragged.
     transition: visibility 0.3s ease;
   }
 }
+
+/* .sidebar-mini.sidenav-toggled .treeview-menu {
+  background: #0f1724; */
+/*   border-top: 1px solid #ffb100;
+  border-bottom: 2px solid #ffb100;
+  border-right: 2px solid #ffb100; */
+/* } */
 
 .dropdown-menu {
   border-radius: 0;
@@ -15705,11 +15805,11 @@ be a descendant of the grid when it is being dragged.
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
-/*   background-color: #FFF; */
-/*   margin: -30px -30px 30px; */
+  background-color: #FFF;
+  margin: -30px -30px 30px;
   padding: 20px 30px;
-/*   -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-          box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); */
+  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 @media print {
@@ -17041,7 +17141,7 @@ be a descendant of the grid when it is being dragged.
   background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
   color: #fff;
   box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-  transition: background 0.3s;
+  transition: background-color 0.3s;
   min-width: 85px;
   min-height: 110px;
   display: flex;
@@ -17298,7 +17398,7 @@ tr:last-child td {
 @media (max-width: 767px) {
   .app-sidebar {
     box-shadow: 0 8px 24px rgba(37,117,252,0.13);
-    border-radius: 0 12px 12px 0;
+/*     border-radius: 0 12px 12px 0; */
   }
 }
 
@@ -17340,4 +17440,15 @@ textarea:focus {
 /* Opcional: elimina el margen inferior de los form-group para inputs alineados */
 #frmJugadores .form-group {
   margin-bottom: 16px;
+}
+/* Sidebar scrollbar invisible but scrollable */
+.app-sidebar {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE 10+ */
+}
+.app-sidebar::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  background: transparent;
+  display: none;
 }

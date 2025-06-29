@@ -56,6 +56,14 @@
 <script src="<?php echo base_url; ?>Assets/js/juegos.js"></script>
 <script src="<?php echo base_url; ?>Assets/js/jugadores.js"></script>
 <script src="<?php echo base_url; ?>Assets/js/grupos.js"></script>
+<script src="<?php echo base_url; ?>Assets/js/tippy-bundle.umd.min.js"></script>
+
+<script>
+  tippy('[data-tippy-content]', {
+    placement: 'top',
+    animation: 'scale',
+  });
+</script>
 
 <!-- Google analytics script-->
 <script type="text/javascript">

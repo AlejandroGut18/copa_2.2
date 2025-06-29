@@ -30,7 +30,6 @@ class Grupos extends Controller
             if ($data[$i]['status_id'] == 1) {
                 $data[$i]['estado'] = '<span class="badge badge-success">Activo</span>';
                 $data[$i]['acciones'] = '<div>
-                <button class="btn btn-edit" type="button" onclick="btnEditarGrupo(' . $data[$i]['id'] . ');"><i class="fa fa-pencil-square-o"></i></button>
                 <button class="btn btn-delete" type="button" onclick="btnEliminarGrupo(' . $data[$i]['id'] . ');"><i class="fa fa-trash-o"></i></button>
             </div>';
             } else {
@@ -48,17 +47,17 @@ class Grupos extends Controller
     {
         $nombre = strClean($_POST['nombre']);
         $genero = strClean($_POST['genero']);
-        $torneo = strClean($_POST['torneo']);
-        $id = strClean($_POST['id']);
+        $torneo = strClean($_POST['torneo_id']);
+        $id = strClean($_POST['id'] ?? "");
 
         // Estatus por defecto (puedes cambiar esto si lo tomas dinámicamente desde la BD)
-        $status_id = strClean($_POST['status_id']);
+        $status_id = strClean($_POST['status_id'] ?? 1);
 
         if (empty($nombre) || empty($genero) || empty($torneo)) {
             $msg = array('msg' => 'Todos los campos obligatorios son requeridos', 'icono' => 'warning');
         } else {
             if ($id == "") {
-                $data = $this->model->insertarGrupo($nombre, $status_id, $torneo, $genero);
+                $data = $this->model->insertarGrupo($nombre, $torneo, $genero, $status_id);
                 if ($data == "ok") {
                     $msg = array('msg' => 'Grupo registrado', 'icono' => 'success');
                 } else if ($data == "existe") {
@@ -71,13 +70,6 @@ class Grupos extends Controller
                 $existe = $this->model->verificarGrupoExiste($nombre, $torneo, $genero, $id);
                 if ($existe) {
                     $msg = array('msg' => 'Ya existe otro grupo con ese nombre en este torneo y género', 'icono' => 'warning');
-                } else {
-                    $data = $this->model->actualizarGrupo($nombre, $status_id, $torneo, $genero, $id);
-                    if ($data == "modificado") {
-                        $msg = array('msg' => 'Grupo modificado', 'icono' => 'success');
-                    } else {
-                        $msg = array('msg' => 'Error al modificar', 'icono' => 'error');
-                    }
                 }
             }
         }
@@ -86,12 +78,6 @@ class Grupos extends Controller
         die();
     }
 
-    public function editar($id)
-    {
-        $data = $this->model->getGrupo($id); // Asume que tienes una función getGrupo($id) en el modelo
-        echo json_encode($data, JSON_UNESCAPED_UNICODE);
-        die();
-    }
 
     public function eliminar($id)
     {
