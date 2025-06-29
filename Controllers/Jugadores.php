@@ -37,8 +37,8 @@ class Jugadores extends Controller
             if ($data[$i]['status_id'] == 1) {
                 $data[$i]['estado'] = '<span class="badge badge-success">Activo</span>';
                 $data[$i]['acciones'] = '<div>
-                <button class="btn btn-primary" type="button" onclick="btnEditarJugador(\'' . $data[$i]['cedula'] . '\');"><i class="fa fa-pencil-square-o"></i></button>
-                <button class="btn btn-danger" type="button" onclick="btnEliminarJugador(\'' . $data[$i]['cedula'] . '\');"><i class="fa fa-trash-o"></i></button>
+                <button class="btn btn-edit" type="button" onclick="btnEditarJugador(\'' . $data[$i]['cedula'] . '\');"><i class="fa fa-pencil-square-o"></i></button>
+                <button class="btn btn-delete" type="button" onclick="btnEliminarJugador(\'' . $data[$i]['cedula'] . '\');"><i class="fa fa-trash-o"></i></button>
             </div>';
             } else {
                 $data[$i]['estado'] = '<span class="badge badge-danger">Inactivo</span>';
@@ -168,8 +168,8 @@ class Jugadores extends Controller
             if ($data[$i]['status_id'] == 1) {
                 $data[$i]['estado'] = '<span class="badge badge-success">Activo</span>';
                 $data[$i]['acciones'] = '<div>
-                    <button class="btn btn-primary" type="button" onclick="btnEditarInscJugador(' . $data[$i]['id'] . ', \'' . $cedula . '\');"><i class="fa fa-pencil-square-o"></i></button>
-                    <button class="btn btn-danger" type="button" onclick="btnEliminarInscJugador(' . $data[$i]['id'] . ', \'' . $cedula . '\');"><i class="fa fa-trash-o"></i></button>
+                    <button class="btn btn-edit" type="button" onclick="btnEditarInscJugador(' . $data[$i]['id'] . ', \'' . $cedula . '\');"><i class="fa fa-pencil-square-o"></i></button>
+                    <button class="btn btn-delete" type="button" onclick="btnEliminarInscJugador(' . $data[$i]['id'] . ', \'' . $cedula . '\');"><i class="fa fa-trash-o"></i></button>
                 </div>';
             } else {
                 $data[$i]['estado'] = '<span class="badge badge-danger">Inactivo</span>';

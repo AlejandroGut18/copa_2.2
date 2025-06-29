@@ -10,7 +10,7 @@
     <div class="tile">
       <div class="tile-body">
         <div class="table-responsive">
-          <table class="table table-light mt-4" id="tblJuegos">
+          <table class="table table-light mt-4 dataTable no-footer dtr-inline" id="tblJuegos">
             <thead class="thead-dark">
               <tr>
                 <th>Id</th>
@@ -53,15 +53,14 @@
           <div class="tab-pane fade show active" id="datos" role="tabpanel">
             <form id="frmJuegos">
               <input type="hidden" id="id" name="id">
+              <div class="form-group">
+                <label for="torneo_id">Torneo</label>
+                <!--Recordar cargar los torneos desde el js  -->
+                <select id="torneo_id" class="form-control" name="torneo_id" onchange="actualizarFiltros()">
+                  <option value="" disabled selected>Seleccione un Torneo</option>
+                </select>
+              </div>
               <div class="row">
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label for="torneo_id">Torneo</label>
-                    <select id="torneo_id" class="form-control" name="torneo_id" onchange="actualizarFiltrosJuegos()">
-                      <option value="" disabled selected>Seleccione un Torneo</option>
-                    </select>
-                  </div>
-                </div>
                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="genero">Género</label>
@@ -71,22 +70,12 @@
                     </select>
                   </div>
                 </div>
-              </div>
-              <div class="row">
                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="grupo_id">Grupo</label>
                     <select id="grupo_id" class="form-control" name="grupo_id" required
                       onchange="actualizarFiltrosJuegos()">
                       <option value="" disabled selected>Seleccione un Grupo</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label for="status_id">Estado</label>
-                    <select id="status_id" class="form-control" name="status_id" required>
-                      <option value="3" selected>Pendiente</option>
                     </select>
                   </div>
                 </div>
@@ -137,7 +126,7 @@
   <!-- ////////////////// -->
 </div>
 <div id="actualizarPuntos" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="my-modal-title"
-    aria-hidden="true">
+  aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header bg-primary text-white">
@@ -192,12 +181,14 @@
       </div>
     </div>
   </div>
-<style>
-  .modal-backdrop.show {
-    opacity: 0.8 !important; /* Hace el fondo más visible */
-    z-index: 1040 !important; /* Asegura que esté detrás del modal */
-}
-</style>
+  <style>
+    .modal-backdrop.show {
+      opacity: 0.8 !important;
+      /* Hace el fondo más visible */
+      z-index: 1040 !important;
+      /* Asegura que esté detrás del modal */
+    }
+  </style>
 
 
   <?php include "Views/Templates/footer.php"; ?>

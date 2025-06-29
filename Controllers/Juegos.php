@@ -31,18 +31,11 @@ class juegos extends Controller
             if ($data[$i]['status_id'] == 3) {
                 $data[$i]['estado'] = '<span class="badge badge-success">Pendiente</span>';
                 $data[$i]['acciones'] = '<div>
-                    <button class="btn btn-primary" type="button" onclick="btnEditarJuego(' . $data[$i]['id'] . ');"><i class="fa fa-pencil-square-o"></i></button>
-                    <button class="btn btn-success" type="button" onclick="btnActualizarPuntos(' . $data[$i]['id'] . ');">
-                    <i class="fa fa-plus-circle"></i> Resultado
-                    </button>
-                    <button class="btn btn-danger" type="button" onclick="btnEliminarJuego(' . $data[$i]['id'] . ');"><i class="fa fa-trash-o"></i></button>
+                    <button class="btn btn-edit" type="button" onclick="btnEditarJuego(' . $data[$i]['id'] . ');"><i class="fa fa-pencil-square-o"></i></button>
+                    
+                    <button class="btn btn-delete" type="button" onclick="btnActualizarPuntos(' . $data[$i]['id'] . ');"><i class="fa fa-trash-o"></i></button>
                 </div>';
-            } else {
-                $data[$i]['estado'] = '<span class="badge badge-danger">Inactivo</span>';
-                $data[$i]['acciones'] = '<div>
-                    <button class="btn btn-success" type="button" onclick="btnReingresarJuego(' . $data[$i]['id'] . ');"><i class="fa fa-reply-all"></i></button>
-                </div>';
-            }
+            } 
         }
         echo json_encode($data, JSON_UNESCAPED_UNICODE);
         die();

@@ -23,12 +23,12 @@ class UbicacionModel extends Query
     {
         $verificar = "SELECT * FROM ubicaciones WHERE nombre = '$nombre'";
         $existe = $this->select($verificar);
-        
+
         if (empty($existe)) {
             $query = "INSERT INTO ubicaciones(nombre, direccion, status_id ) VALUES (?,?,?)";
             $datos = array($nombre, $direccion, $status_id);
             $data = $this->save($query, $datos);
-            
+
             if ($data == 1) {
                 $res = "ok";
             } else {
@@ -45,12 +45,12 @@ class UbicacionModel extends Query
         $sql = "SELECT * FROM ubicaciones WHERE id = $id";
         return $this->select($sql);
     }
-    public function actualizarUbicacion($nombre, $direccion, $status_id, $id)
+    public function actualizarUbicacion($nombre, $direccion, $id)
     {
         $query = "UPDATE ubicaciones SET nombre = ?, direccion = ? WHERE id = ?";
-        $datos = array($nombre, $direccion, $status_id, $id);
+        $datos = array($nombre, $direccion, $id);
         $data = $this->save($query, $datos);
-        
+
         if ($data == 1) {
             $res = "modificado";
         } else {
@@ -58,15 +58,23 @@ class UbicacionModel extends Query
         }
         return $res;
     }
+    public function estadoUbicacion($estado, $id)
+    {
+        $sql = "UPDATE ubicaciones SET status_id = ? WHERE id = ?";
+        $data = $this->save($sql, [$estado, $id]);
+        return $data;
+    }
 
-    public function getUbicacionesActivas() {
+
+    public function getUbicacionesActivas()
+    {
         $sql = "SELECT id, nombre 
                 FROM ubicaciones 
                 WHERE status_id = 1 
                 ORDER BY nombre";
         return $this->selectAll($sql);
     }
-  
+
     public function verificarPermisos($id_user, $permiso)
     {
         $tiene = false;

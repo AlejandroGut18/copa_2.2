@@ -32,8 +32,8 @@ class Ubicacion extends Controller
             if ($data[$i]['status_id'] == 1) {
                 $data[$i]['estado'] = '<span class="badge badge-success">Activo</span>';
                 $data[$i]['acciones'] = '<div>
-                <button class="btn btn-primary" type="button" onclick="btnEditarUbic(' . $data[$i]['id'] . ');"><i class="fa fa-pencil-square-o"></i></button>
-                <button class="btn btn-danger" type="button" onclick="btnEliminarUbic(' . $data[$i]['id'] . ');"><i class="fa fa-trash-o"></i></button>
+                <button class="btn btn-edit" type="button" onclick="btnEditarUbic(' . $data[$i]['id'] . ');"><i class="fa fa-pencil-square-o"></i></button>
+                <button class="btn btn-delete" type="button" onclick="btnEliminarUbic(' . $data[$i]['id'] . ');"><i class="fa fa-trash-o"></i></button>
                 <div/>';
             } else {
                 $data[$i]['estado'] = '<span class="badge badge-danger">Inactivo</span>';
@@ -67,7 +67,7 @@ class Ubicacion extends Controller
                     $msg = array('msg' => 'Error al registrar', 'icono' => 'error');
                 }
             } else {
-                $data = $this->model->actualizarUbicacion($nombre, $direccion, $status_id, $id);
+                $data = $this->model->actualizarUbicacion($nombre, $direccion, $id);
                 if ($data == "modificado") {
                     $msg = array('msg' => 'Ubicacion modificada', 'icono' => 'success');
                 } else {

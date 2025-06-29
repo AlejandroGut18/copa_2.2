@@ -29,10 +29,10 @@ class Usuarios extends Controller
         if (empty($_SESSION['activo'])) {
             header("location: " . base_url);
         }
-    
+
         $id_user = $_SESSION['id_usuario'];
         $perm = $this->model->verificarPermisos($id_user, "Usuarios");
-    
+
         // Si no es admin pero tiene permiso, excluye el admin
         if ($id_user != 1 && $perm) {
             $data = $this->model->getUsuarios(true); // ← excluye admin
@@ -47,14 +47,14 @@ class Usuarios extends Controller
                     $data[$i]['estado'] = '<span class="badge badge-success">Activo</span>';
                     $data[$i]['acciones'] = '<div>
                 <button class="btn btn-dark" onclick="btnRolesUser(' . $data[$i]['id'] . ')"><i class="fa fa-key"></i></button>
-                <button class="btn btn-primary" type="button" onclick="btnEditarUser(' . $data[$i]['id'] . ');"><i class="fa fa-pencil-square-o"></i></button>
-                <button class="btn btn-danger" type="button" onclick="btnEliminarUser(' . $data[$i]['id'] . ');"><i class="fa fa-trash-o"></i></button>
+                <button class="btn btn-edit" type="button" onclick="btnEditarUser(' . $data[$i]['id'] . ');"><i class="fa fa-pencil-square-o"></i></button>
+                <button class="btn btn-delete" type="button" onclick="btnEliminarUser(' . $data[$i]['id'] . ');"><i class="fa fa-trash-o"></i></button>
                 <div/>';
                 } else {
                     $data[$i]['estado'] = '<span class="badge badge-success">Activo</span>';
                     $data[$i]['acciones'] = '<div class"text-center">
                 <span class="badge-primary p-1 rounded">Super Admin</span>
-                <button class="btn btn-primary" type="button" onclick="btnEditarUser(' . $data[$i]['id'] . ');"><i class="fa fa-pencil-square-o"></i></button>
+                <button class="btn btn-edit" type="button" onclick="btnEditarUser(' . $data[$i]['id'] . ');"><i class="fa fa-pencil-square-o"></i></button>
                 </div>';
                 }
             } else {
@@ -80,7 +80,11 @@ class Usuarios extends Controller
                 $_SESSION['id_usuario'] = $data['id'];
                 $_SESSION['usuario'] = $data['usuario'];
                 $_SESSION['nombre'] = $data['nombre'];
+                $_SESSION['rol_id'] = $data['rol_id'];
                 $_SESSION['activo'] = true;
+                // define('ROL_ADMIN', 1);
+                // define('ROL_DELEGADO', 3);
+
                 $msg = array('msg' => 'Usuario Verficado', 'icono' => 'success');
             } else {
                 $msg = array('msg' => 'Usuario o contraseña incorrecta', 'icono' => 'warning');

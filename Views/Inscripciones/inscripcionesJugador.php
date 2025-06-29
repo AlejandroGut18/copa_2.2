@@ -11,7 +11,7 @@
         <div class="tile">
             <div class="tile-body">
                 <div class="table-responsive">
-                    <table class="table table-light mt-4" id="tblInscripcionesJugador">
+                    <table class="table table-light mt-4 dataTable no-footer dtr-inline" id="tblInscripcionesJugador">
                         <thead class="thead-dark">
                             <tr>
                                 <th>id</th>

@@ -10,7 +10,7 @@
         <div class="tile">
             <div class="tile-body">
                 <div class="table-responsive">
-                    <table class="table table-bordered table-hover" id="tblJugadores">
+                    <table class="table table-light mt-4 dataTable no-footer dtr-inline" id="tblJugadores">
                         <thead class="thead-dark">
                             <tr>
                                 <th>Cedula</th>

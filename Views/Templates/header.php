@@ -69,7 +69,7 @@
                     <li><a class="dropdown-item" href="#" id="modalPass"><i class="fa fa-user fa-lg"></i> Perfil</a>
                     </li>
                     <li>
-                        <a class="dropdown-item" href="#" id="btnSalir">
+                        <a class="dropdown-item salir" href="#" id="btnSalir">
                             <i class="fa fa-sign-out fa-lg"></i> Salir
                         </a>
                     </li>

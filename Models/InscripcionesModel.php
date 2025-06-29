@@ -43,7 +43,7 @@ class InscripcionesModel extends Query
     public function getInscripcionJug($id, $jugador_id)
     {
         $sql = "SELECT 
-            i.id,
+            i.id,~
             ij.jugador_id,
             i.torneo_id,
             i.genero,

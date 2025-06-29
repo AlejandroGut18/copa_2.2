@@ -14,7 +14,7 @@ echo "";
         <div class="tile">
             <div class="tile-body">
                 <div class="table-responsive">
-                    <table class="table table-light mt-4" id="tblInscripciones">
+                    <table class="table table-light mt-4 dataTable no-footer dtr-inline" id="tblInscripciones">
                         <thead class="thead-dark">
                             <tr>
                                 <th>Id</th>
