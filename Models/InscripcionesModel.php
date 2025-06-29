@@ -40,16 +40,17 @@ class InscripcionesModel extends Query
         }
     }
 
-    public function getInscripcionJug($id)
+    public function getInscripcionJug($id, $jugador_id)
     {
         $sql = "SELECT 
+            i.id,
             ij.jugador_id,
             i.torneo_id,
             i.genero,
             i.equipo_id
         FROM inscripcion_jugadores ij
         INNER JOIN inscripciones i ON ij.inscripcion_id = i.id
-        WHERE ij.inscripcion_id = $id";
+        WHERE i.id = $id AND ij.jugador_id = $jugador_id";
         return $this->select($sql);
     }
     public function getInscripcion($id)
@@ -73,7 +74,7 @@ class InscripcionesModel extends Query
         return $res;
     }
 
-
+  
     public function estadoGrupo($status_id, $id)
     {
         $query = "UPDATE grupos SET status_id = ? WHERE id = ?";

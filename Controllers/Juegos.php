@@ -195,18 +195,24 @@ class juegos extends Controller
         $todoBien = true;
 
         foreach ($datos as $detalle) {
-            $res = $model->guardarPuntos($detalle);
-            if (!$res) {
+            $res = $model->guardarDetalleJuego(
+                $detalle['juego_id'],
+                $detalle['equipo_id'],
+                $detalle['puntos'],
+                $detalle['vs_equipo_id'],
+                $detalle['puntos_vs_equipo']
+            );
+
+            if ($res !== "ok" && $res !== "modificado") {
                 $todoBien = false;
                 break;
             }
         }
 
-        if ($todoBien) {
-            echo json_encode(["ok" => true]);
-        } else {
-            echo json_encode(["ok" => false, "msg" => "Error al registrar uno o más puntos"]);
-        }
+        echo json_encode([
+            "ok" => $todoBien,
+            "msg" => $todoBien ? null : "Error al registrar uno o más puntos"
+        ]);
     }
 
 

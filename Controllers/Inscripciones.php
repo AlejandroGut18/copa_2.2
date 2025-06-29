@@ -93,12 +93,27 @@ class Inscripciones extends Controller
         echo json_encode($data, JSON_UNESCAPED_UNICODE);
         die();
     }
-    public function editarInscJugador($id)
+    public function editarInscJugador()
     {
-        $data = $this->model->getInscripcionJug($id); // Asume que tienes una función getGrupo($id) en el modelo
+        $jugador_id = isset($_GET['cedula']) ? $_GET['cedula'] : null;
+        $id = isset($_GET['id']) ? $_GET['id'] : null;
+
+        if (!$id || !$jugador_id) {
+            echo json_encode(['error' => 'Datos incompletos'], JSON_UNESCAPED_UNICODE);
+            return;
+        }
+
+        $data = $this->model->getInscripcionJug($id, $jugador_id);
+
+        if (empty($data)) {
+            echo json_encode(['error' => 'Inscripción no encontrada'], JSON_UNESCAPED_UNICODE);
+            return;
+        }
+
         echo json_encode($data, JSON_UNESCAPED_UNICODE);
         die();
     }
+
 
     public function eliminar($id)
     {

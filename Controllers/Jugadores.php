@@ -164,11 +164,12 @@ class Jugadores extends Controller
     public function listarInscritos(){
         $data = $this->model->getInscritos();
         for ($i = 0; $i < count($data); $i++) {
+            $cedula = htmlspecialchars($data[$i]['cedula'], ENT_QUOTES, 'UTF-8');
             if ($data[$i]['status_id'] == 1) {
                 $data[$i]['estado'] = '<span class="badge badge-success">Activo</span>';
                 $data[$i]['acciones'] = '<div>
-                    <button class="btn btn-primary" type="button" onclick="btnEditarInscJugador(' . $data[$i]['id'] . ', \'' . $data[$i]['cedula'] . '\');"><i class="fa fa-pencil-square-o"></i></button>
-                    <button class="btn btn-danger" type="button" onclick="btnEliminarInscJugador(' . $data[$i]['id'] . ', \'' . $data[$i]['cedula'] . '\');"><i class="fa fa-trash-o"></i></button>
+                    <button class="btn btn-primary" type="button" onclick="btnEditarInscJugador(' . $data[$i]['id'] . ', \'' . $cedula . '\');"><i class="fa fa-pencil-square-o"></i></button>
+                    <button class="btn btn-danger" type="button" onclick="btnEliminarInscJugador(' . $data[$i]['id'] . ', \'' . $cedula . '\');"><i class="fa fa-trash-o"></i></button>
                 </div>';
             } else {
                 $data[$i]['estado'] = '<span class="badge badge-danger">Inactivo</span>';

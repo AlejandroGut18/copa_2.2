@@ -80,7 +80,22 @@ class JuegosModel extends Query
 
     public function getJuego($id)
     {
-        $sql = "SELECT * FROM juegos WHERE id = $id";
+        $sql = "SELECT 
+                j.*, 
+                (
+                    SELECT puntos 
+                    FROM detalles_juego dj 
+                    WHERE dj.juego_id = j.id AND dj.equipo_id = j.equipo_id 
+                    LIMIT 1
+                ) AS puntos_equipo,
+                (
+                    SELECT puntos 
+                    FROM detalles_juego dj 
+                    WHERE dj.juego_id = j.id AND dj.equipo_id = j.vs_equipo_id 
+                    LIMIT 1
+                ) AS puntos_vs_equipo
+            FROM juegos j
+            WHERE j.id = ?";
         return $this->select($sql);
     }
 
@@ -117,17 +132,30 @@ class JuegosModel extends Query
         }
         return $tiene;
     }
+public function guardarDetalleJuego($juego_id, $equipo_id, $puntos, $vs_equipo_id, $puntos_vs_equipo)
+{
+    $query = "SELECT COUNT(*) as total FROM detalles_juegos WHERE juego_id = ? AND equipo_id = ?";
+    $datos = array($juego_id, $equipo_id);
+    $result = $this->select($query, $datos);
 
-    public function guardarPuntos($data)
-    {
-        // Agrega validación de datos
-        if (empty($data['juego_id']) || empty($data['equipo_id']) || !is_numeric($data['puntos'])) {
-            return false;
-        }
-
-        $sql = "INSERT INTO detalle_juego (juego_id, equipo_id, puntos) VALUES (?, ?, ?)";
-        return $this->save($sql, [$data['juego_id'], $data['equipo_id'], $data['puntos']]);
+    if ($result && $result['total'] > 0) {
+        // UPDATE
+        $query = "UPDATE detalles_juegos 
+                  SET puntos = ?, vs_equipo_id = ?, puntos_vs_equipo = ?
+                  WHERE juego_id = ? AND equipo_id = ?";
+        $datos = array($puntos, $vs_equipo_id, $puntos_vs_equipo, $juego_id, $equipo_id);
+        $data = $this->save($query, $datos);
+        return ($data == 1) ? "modificado" : "error";
+    } else {
+        // INSERT
+        $query = "INSERT INTO detalles_juegos 
+                  (juego_id, equipo_id, puntos, vs_equipo_id, puntos_vs_equipo)
+                  VALUES (?, ?, ?, ?, ?)";
+        $datos = array($juego_id, $equipo_id, $puntos, $vs_equipo_id, $puntos_vs_equipo);
+        $data = $this->save($query, $datos);
+        return ($data == 1) ? "ok" : "error";
     }
+}
 
 
 }
